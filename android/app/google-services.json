@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "86273195823",
+    "project_id": "mfulife-demo",
+    "storage_bucket": "mfulife-demo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:86273195823:android:8fcc8fd15b37153f246bda",
+        "android_client_info": {
+          "package_name": "com.example.mfu_life_demo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBWQ5JdEU2fp2T8aOOlQnMwckQfToiq9rc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
