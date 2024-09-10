@@ -10,6 +10,7 @@ class Event extends StatefulWidget {
   final bool isDone;
   final String img;
   final String img2;
+  final bool hasButton;
 
   Event({
     required this.name,
@@ -18,6 +19,7 @@ class Event extends StatefulWidget {
     required this.isDone,
     required this.img,
     required this.img2,
+    required this.hasButton,
   });
 
   @override
@@ -107,24 +109,28 @@ class _EventState extends State<Event> {
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 10.0),
-                child: TextButton(
-                  onPressed: widget.isDone == true || isPressed == true
-                      ? null
-                      : () {
-                          eventButtonProvider.pressButton(widget.name);
-                        },
-                  child: Text(
-                    'Join',
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
-                  ),
-                  style: ButtonStyle(
-                    backgroundColor: widget.isDone == true || isPressed == true
-                        ? MaterialStateProperty.all(Colors.grey)
-                        : MaterialStateProperty.all(const Color(0xFF7A060D)),
-                  ),
-                ),
+                child: widget.hasButton == true
+                    ? TextButton(
+                        onPressed: widget.isDone == true || isPressed == true
+                            ? null
+                            : () {
+                                eventButtonProvider.pressButton(widget.name);
+                              },
+                        child: Text(
+                          'Join',
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
+                        style: ButtonStyle(
+                          backgroundColor:
+                              widget.isDone == true || isPressed == true
+                                  ? MaterialStateProperty.all(Colors.grey)
+                                  : MaterialStateProperty.all(
+                                      const Color(0xFF7A060D)),
+                        ),
+                      )
+                    : const SizedBox.shrink(),
               ),
               widget.isDone == true
                   ? const Text(
@@ -142,7 +148,7 @@ class _EventState extends State<Event> {
                           ))
                       : const Text(''),
               const SizedBox(
-                height: 20,
+                height: 10,
               )
             ],
           ),

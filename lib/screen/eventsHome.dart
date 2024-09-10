@@ -68,6 +68,7 @@ class _EventsState extends State<Events> {
                     final eventDetail = event.get('detail');
                     final eventImages = event.get('img');
                     final eventImages2 = event.get('img2');
+                    final hasButton = event.get('hasButton');
 
                     final eventsWidget = EventBubble(
                       name: eventName,
@@ -76,6 +77,7 @@ class _EventsState extends State<Events> {
                       detail: eventDetail,
                       img: eventImages,
                       img2: eventImages2,
+                      hasButton: hasButton,
                     );
 
                     eventsWidgets.add(eventsWidget);
@@ -104,6 +106,7 @@ class EventBubble extends StatelessWidget {
     required this.detail,
     required this.img,
     required this.img2,
+    required this.hasButton,
   });
 
   final String name;
@@ -112,6 +115,7 @@ class EventBubble extends StatelessWidget {
   final String detail;
   final String img;
   final String img2;
+  final bool hasButton;
 
   @override
   Widget build(BuildContext context) {
@@ -133,17 +137,19 @@ class EventBubble extends StatelessWidget {
         ),
         onTap: () {
           Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => Event(
-                  name: name,
-                  about: about,
-                  isDone: isDone,
-                  detail: detail,
-                  img: img,
-                  img2: img2,
-                ),
-              ));
+            context,
+            MaterialPageRoute(
+              builder: (context) => Event(
+                name: name,
+                about: about,
+                isDone: isDone,
+                detail: detail,
+                img: img,
+                img2: img2,
+                hasButton: hasButton,
+              ),
+            ),
+          );
         },
       ),
     );
