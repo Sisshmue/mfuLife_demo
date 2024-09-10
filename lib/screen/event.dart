@@ -80,33 +80,34 @@ class _EventState extends State<Event> {
               SizedBox(
                 height: 30,
               ),
-              Row(
-                children: [
-                  widget.img.isNotEmpty
-                      ? Expanded(
-                          child: Image.network(
-                            widget.img,
-                            height: 200, // Adjust size as needed
-                            width: double.infinity,
-                            fit: BoxFit.cover,
-                          ),
-                        )
-                      : const SizedBox.shrink(),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  widget.img2.isNotEmpty
-                      ? Expanded(
-                          child: Image.network(
-                            widget.img2,
-                            height: 200, // Adjust size as needed
-                            width: double.infinity,
-                            fit: BoxFit.cover,
-                          ),
-                        )
-                      : const SizedBox.shrink(),
-                ],
-              ),
+              // Row(
+              //   children: [
+              //     widget.img.isNotEmpty
+              //         ? Expanded(
+              //             child: Image.network(
+              //               widget.img,
+              //               height: 200, // Adjust size as needed
+              //               width: double.infinity,
+              //               fit: BoxFit.cover,
+              //             ),
+              //           )
+              //         : const SizedBox.shrink(),
+              //     SizedBox(
+              //       width: 10,
+              //     ),
+              //     widget.img2.isNotEmpty
+              //         ? Expanded(
+              //             child: Image.network(
+              //               widget.img2,
+              //               height: 200, // Adjust size as needed
+              //               width: double.infinity,
+              //               fit: BoxFit.cover,
+              //             ),
+              //           )
+              //         : const SizedBox.shrink(),
+              //   ],
+              // ),
+              Showpopup(img: widget.img, img2: widget.img2),
               Padding(
                 padding: const EdgeInsets.only(top: 10.0),
                 child: widget.hasButton == true
@@ -154,6 +155,71 @@ class _EventState extends State<Event> {
           ),
         ),
       ),
+    );
+  }
+}
+
+class Showpopup extends StatelessWidget {
+  final String img;
+  final String img2;
+
+  Showpopup({required this.img, required this.img2});
+
+  void showImgDialog(BuildContext context, String imageUrl) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Dialog(
+          backgroundColor: Colors.transparent,
+          child: GestureDetector(
+            onTap: () {
+              Navigator.of(context).pop();
+            },
+            child: Image.network(
+              imageUrl,
+              fit: BoxFit.contain,
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        img.isNotEmpty
+            ? Expanded(
+                child: GestureDetector(
+                  onTap: () => showImgDialog(context, img),
+                  child: Padding(
+                    padding: EdgeInsets.all(5),
+                    child: Image.network(
+                      img,
+                      height: 200,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+              )
+            : const SizedBox.shrink(),
+        img2.isNotEmpty
+            ? Expanded(
+                child: GestureDetector(
+                  onTap: () => showImgDialog(context, img2),
+                  child: Padding(
+                    padding: EdgeInsets.all(5),
+                    child: Image.network(
+                      img2,
+                      height: 200,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+              )
+            : const SizedBox.shrink(),
+      ],
     );
   }
 }

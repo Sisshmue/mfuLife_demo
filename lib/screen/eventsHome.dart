@@ -13,13 +13,13 @@ class Events extends StatefulWidget {
 class _EventsState extends State<Events> {
   final _firestore = FirebaseFirestore.instance;
 
-  void eventsSteam() async {
-    await for (var snapshot in _firestore.collection('events').snapshots()) {
-      for (var event in snapshot.docs) {
-        print(event.data());
-      }
-    }
-  }
+  // void eventsSteam() async {
+  //   await for (var snapshot in _firestore.collection('events').snapshots()) {
+  //     for (var event in snapshot.docs) {
+  //       print(event.data());
+  //     }
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -39,17 +39,20 @@ class _EventsState extends State<Events> {
         automaticallyImplyLeading: false,
         backgroundColor: const Color(0xFF7A060D),
       ),
-      body: Center(
+      body: SingleChildScrollView(
         child: Column(
           children: [
-            TextButton(
-              onPressed: eventsSteam,
-              child: const Text('get events'),
-            ),
+            // TextButton(
+            //   onPressed: eventsSteam,
+            //   child: const Text('get events'),
+            // ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: StreamBuilder(
-                stream: _firestore.collection('events').snapshots(),
+                stream: _firestore
+                    .collection('events')
+                    .orderBy('createBy', descending: true)
+                    .snapshots(),
                 builder: (context, snapshot) {
                   if (!snapshot.hasData) {
                     return const Center(

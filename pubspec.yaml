@@ -39,6 +39,7 @@ dependencies:
   cloud_firestore: ^5.4.0
   google_fonts: ^6.2.1
   provider: ^6.1.2
+  firebase_messaging: ^15.1.0
 
 dev_dependencies:
   flutter_test:
