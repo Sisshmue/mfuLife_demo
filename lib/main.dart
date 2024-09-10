@@ -1,8 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:mfu_life_demo/firebase_options.dart';
+import 'package:mfu_life_demo/provider/eventButtonProvider.dart';
 import 'package:mfu_life_demo/screen/homePage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -12,7 +14,10 @@ void main() async {
   FirebaseFirestore.instance.settings = const Settings(
     persistenceEnabled: true,
   );
-  runApp(Demo());
+  runApp(MultiProvider(
+    providers: [ChangeNotifierProvider(create: (_) => EventButtonProvider())],
+    child: Demo(),
+  ));
 }
 
 class Demo extends StatelessWidget {

@@ -37,7 +37,7 @@ class _EventsState extends State<Events> {
         ),
         centerTitle: true,
         automaticallyImplyLeading: false,
-        backgroundColor: Color(0xFF7A060D),
+        backgroundColor: const Color(0xFF7A060D),
       ),
       body: Center(
         child: Column(
@@ -64,8 +64,19 @@ class _EventsState extends State<Events> {
                   for (var event in events!) {
                     final eventName = event.get('name');
                     final eventAbout = event.get('about');
-                    final eventsWidget =
-                        EventBubble(name: eventName, about: eventAbout);
+                    final isDone = event.get('isDone');
+                    final eventDetail = event.get('detail');
+                    final eventImages = event.get('img');
+                    final eventImages2 = event.get('img2');
+
+                    final eventsWidget = EventBubble(
+                      name: eventName,
+                      about: eventAbout,
+                      isDone: isDone,
+                      detail: eventDetail,
+                      img: eventImages,
+                      img2: eventImages2,
+                    );
 
                     eventsWidgets.add(eventsWidget);
                   }
@@ -86,10 +97,21 @@ class _EventsState extends State<Events> {
 }
 
 class EventBubble extends StatelessWidget {
-  EventBubble({required this.name, required this.about});
+  EventBubble({
+    required this.name,
+    required this.about,
+    required this.isDone,
+    required this.detail,
+    required this.img,
+    required this.img2,
+  });
 
   final String name;
   final String about;
+  final bool isDone;
+  final String detail;
+  final String img;
+  final String img2;
 
   @override
   Widget build(BuildContext context) {
@@ -111,36 +133,19 @@ class EventBubble extends StatelessWidget {
         ),
         onTap: () {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => Event()));
+              context,
+              MaterialPageRoute(
+                builder: (context) => Event(
+                  name: name,
+                  about: about,
+                  isDone: isDone,
+                  detail: detail,
+                  img: img,
+                  img2: img2,
+                ),
+              ));
         },
       ),
     );
   }
 }
-
-// Text name = Text(
-//   '$eventName',
-//   style: const TextStyle(
-//       fontWeight: FontWeight.bold, fontSize: 18),
-// );
-// Text about = Text(
-//   '$eventabout',
-//   style: const TextStyle(fontStyle: FontStyle.italic),
-// );
-// final eventsWidget = GestureDetector(
-//   child: Column(
-//     crossAxisAlignment: CrossAxisAlignment.start,
-//     children: [
-//       name,
-//       about,
-//       const SizedBox(
-//         child: Divider(
-//           height: 20,
-//         ),
-//       )
-//     ],
-//   ),
-//   onTap: () {
-//     print("Touch");
-//   },
-// );
