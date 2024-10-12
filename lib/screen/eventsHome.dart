@@ -85,11 +85,9 @@ class _EventsState extends State<Events> {
 
                     eventsWidgets.add(eventsWidget);
                   }
-                  return Expanded(
-                    child: ListView(
-                      shrinkWrap: true, // Add this line
-                      children: eventsWidgets,
-                    ),
+                  return ListView(
+                    shrinkWrap: true, // Add this line
+                    children: eventsWidgets,
                   );
                 },
               ),
