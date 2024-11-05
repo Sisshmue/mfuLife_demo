@@ -14,7 +14,7 @@ class EventButtonProvider extends ChangeNotifier {
 
   // Get the button state for a specific event
   bool isButtonPressed(String eventName) {
-    return _buttonStates[eventName] ?? false; // Default to false if not set
+    return _buttonStates[eventName] ?? false; // Default  to false if not set
   }
 
   // Set the button state for a specific event

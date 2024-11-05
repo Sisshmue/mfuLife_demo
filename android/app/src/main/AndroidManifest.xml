@@ -1,4 +1,4 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.example.mfu_life_demo">
     <application
         android:label="mfu_life_demo"
         android:name="${applicationName}"
